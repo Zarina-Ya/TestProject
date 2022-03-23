@@ -6,6 +6,8 @@ public class MyEnemy : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private Player _player;
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] Transform _spawnPositionBullet;
 
     private void Start()
     {
@@ -21,9 +23,25 @@ public class MyEnemy : MonoBehaviour
         }
 
     }
-   
+
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, _player.transform.position) < 3)
+        {
+            if (Input.GetButtonDown("Submit")) Fire();
+        }
+    }
+
     private void Die()
     {
         Destroy(gameObject);    
+    }
+
+
+    private void Fire()
+    {
+        var bulletObj = Instantiate(_bulletPrefab, _spawnPositionBullet.position, _spawnPositionBullet.rotation);
+        var bullet = bulletObj.GetComponent<Bullet>();
+        bullet.Init(_player.transform,5f,3f);
     }
 }
