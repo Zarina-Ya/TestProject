@@ -28,7 +28,7 @@ public class MyEnemy : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _player.transform.position) < 3)
         {
-            if (Input.GetButtonDown("Submit")) Fire();
+            if (Input.GetButtonDown("Fire2")) Fire();
         }
     }
 
