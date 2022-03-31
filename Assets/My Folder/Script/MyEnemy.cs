@@ -9,9 +9,14 @@ public class MyEnemy : MonoBehaviour
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Transform _spawnPositionBullet;
 
+    [SerializeField] private float _coolDown;
+    [SerializeField] private bool _isFire;
+
+
     private void Start()
     {
         _player = FindObjectOfType<Player>();
+        _isFire = true; 
     }
     public void Hurt(int damage)
     {
@@ -26,10 +31,19 @@ public class MyEnemy : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, _player.transform.position) < 3)
+        Ray ray = new Ray(_spawnPositionBullet.position, transform.forward);
+        Debug.DrawRay(_spawnPositionBullet.position, transform.forward * 6 , Color.red );
+        if (Physics.Raycast(ray, out RaycastHit hit, 6))
         {
-            if (Input.GetButtonDown("Fire2")) Fire();
+            if (hit.collider.CompareTag("Player"))
+            {
+                if (_isFire) Fire();
+            }
         }
+        //    if (Vector3.Distance(transform.position, _player.transform.position) < 6)
+        //{
+        //    if (_isFire) Fire();
+        //}
     }
 
     private void Die()
@@ -40,8 +54,16 @@ public class MyEnemy : MonoBehaviour
 
     private void Fire()
     {
+        _isFire = false;
         var bulletObj = Instantiate(_bulletPrefab, _spawnPositionBullet.position, _spawnPositionBullet.rotation);
         var bullet = bulletObj.GetComponent<Bullet>();
         bullet.Init(_player.transform,5f,3f);
+
+        Invoke(nameof(Reloading), _coolDown);
+    }
+
+    private void Reloading()
+    {
+        _isFire = true;
     }
 }

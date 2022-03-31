@@ -7,16 +7,17 @@ public class Player : MonoBehaviour
     [SerializeField] private float _turningSpeed;
     [SerializeField] private Vector3 _direction;// Направление
 
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rb;
 
     [SerializeField] private float _jumpPower = 50f;
     [SerializeField] private bool _isGrounded { get; set; }
 
     float rotation, move;
 
-    private void Start()
+    private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+       
     }
 
 
@@ -27,10 +28,10 @@ public class Player : MonoBehaviour
         //_direction.x = Input.GetAxis("Horizontal");
         //_direction.z = Input.GetAxis("Vertical");
 
-         rotation = Input.GetAxis("Horizontal") * 3;
-         move = Input.GetAxis("Vertical") * _turningSpeed * Time.deltaTime;
+        rotation = Input.GetAxis("Horizontal") * 3;
+        move = Input.GetAxis("Vertical") * _turningSpeed * Time.deltaTime;
 
-       
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -41,31 +42,28 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(_isGrounded) 
-            rigidbody.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+        if(_isGrounded)
+            rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        var ground = collision.gameObject.GetComponentInParent<Ground>();
+        var ground = collision.gameObject.GetComponent<Ground>();
         if (ground) _isGrounded = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        var ground = collision.gameObject.GetComponentInParent<Ground>();
+        var ground = collision.gameObject.GetComponent<Ground>();
         if (ground) _isGrounded = false;
     }
 
     public void FixedUpdate()
     {
-        //_direction.Normalize();
-        ////// Vector3 dir = new Vector3(_direction.x * _turningSpeed, _direction.y * Time.deltaTime, _direction.z * _turningSpeed);
-        //transform.Translate(_direction * _turningSpeed * Time.deltaTime);
-        //// transform.Translate(dir);
-        ///
+    
         transform.rotation *= Quaternion.Euler(0f, rotation, 0f);
-        rigidbody.MovePosition(transform.position + transform.forward * move);
+        rb.MovePosition(transform.position + transform.forward * move);
+
 
     }
 

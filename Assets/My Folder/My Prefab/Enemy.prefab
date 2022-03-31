@@ -138,3 +138,5 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 8163270839837536428, guid: 5133f500469c8914b8ee62dd45a7b2b8,
     type: 3}
   _spawnPositionBullet: {fileID: 8463802704153805735}
+  _coolDown: 1
+  _isFire: 0
