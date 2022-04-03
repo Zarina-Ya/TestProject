@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 3
+  _effect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _hasExploded: 0
+  _radius: 5
 --- !u!54 &3528776246461458852
 Rigidbody:
   m_ObjectHideFlags: 0

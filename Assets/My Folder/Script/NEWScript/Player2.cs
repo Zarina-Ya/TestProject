@@ -32,7 +32,8 @@ public class Player2 : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, 0f, vertical);
         movement.Normalize();
-        _rb.AddForce(movement * _speed);
+        //_rb.AddForce(movement * _speed);
+        _rb.velocity = movement * _speed;
        
     }
 

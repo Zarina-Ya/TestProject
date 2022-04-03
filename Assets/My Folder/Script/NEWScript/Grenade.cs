@@ -8,9 +8,11 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float _delay = 3f;
     private float _countDown;
 
-    [SerializeField] ParticleSystem _effect;
+   [SerializeField] ParticleSystem _effect;
    
    [SerializeField] bool _hasExploded;
+
+    [SerializeField] float _radius = 5f;
 
     private void Start()
     {
@@ -34,9 +36,22 @@ public class Grenade : MonoBehaviour
      
         Debug.Log("BUUM");
 
-          Instantiate(_effect, transform.position, transform.rotation);
+        Instantiate(_effect, transform.position, transform.rotation);
 
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+    
+        foreach (Collider collider in colliders)
+        {
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            if(rb != null )
+            {
+                rb.AddForce( - Vector3.forward *500f);
+                rb.AddTorque(Vector3.right * 500f);
+            }
 
+            var enemy = collider.gameObject.GetComponent<MyEnemy>();
+            if (enemy) enemy.Die();
+        }
 
       
 

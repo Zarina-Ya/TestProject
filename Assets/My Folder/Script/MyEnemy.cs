@@ -31,22 +31,22 @@ public class MyEnemy : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = new Ray(_spawnPositionBullet.position, transform.forward);
-        Debug.DrawRay(_spawnPositionBullet.position, transform.forward * 6 , Color.red );
-        if (Physics.Raycast(ray, out RaycastHit hit, 6))
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                if (_isFire) Fire();
-            }
-        }
-        //    if (Vector3.Distance(transform.position, _player.transform.position) < 6)
+        //Ray ray = new Ray(_spawnPositionBullet.position, transform.forward);
+        //Debug.DrawRay(_spawnPositionBullet.position, transform.forward * 6 , Color.red );
+        //if (Physics.Raycast(ray, out RaycastHit hit, 6))
         //{
-        //    if (_isFire) Fire();
+        //    if (hit.collider.CompareTag("Player"))
+        //    {
+        //        if (_isFire) Fire();
+        //    }
         //}
+        if (Vector3.Distance(transform.position, _player.transform.position) < 6)
+        {
+            if (_isFire) Fire();
+        }
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);    
     }
