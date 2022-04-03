@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [SerializeField] private float _jumpPower = 50f;
-    [SerializeField] private bool _isGrounded { get; set; }
+    [SerializeField] private bool _isGrounded;
 
     float rotation, move;
 
@@ -25,14 +25,6 @@ public class Player : MonoBehaviour
     public void Update()
     {
 
-        //_direction.x = Input.GetAxis("Horizontal");
-        //_direction.z = Input.GetAxis("Vertical");
-
-        rotation = Input.GetAxis("Horizontal") * 3;
-        move = Input.GetAxis("Vertical") * _turningSpeed * Time.deltaTime;
-
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
@@ -42,25 +34,33 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(_isGrounded)
+        if (_isGrounded)
             rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+       
     }
 
+   
     private void OnCollisionEnter(Collision collision)
     {
-        var ground = collision.gameObject.GetComponent<Ground>();
-        if (ground) _isGrounded = true;
+        IsGroundUpdate(collision, true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        var ground = collision.gameObject.GetComponent<Ground>();
-        if (ground) _isGrounded = false;
+        IsGroundUpdate(collision, false);
+    }
+
+    private void IsGroundUpdate(Collision collision, bool isGr)
+    {
+        if (collision.gameObject.GetComponent<Ground>()) _isGrounded = isGr;
+       
     }
 
     public void FixedUpdate()
     {
-    
+        rotation = Input.GetAxis("Horizontal") * 3;
+        move = Input.GetAxis("Vertical") * _turningSpeed * Time.deltaTime;
+
         transform.rotation *= Quaternion.Euler(0f, rotation, 0f);
         rb.MovePosition(transform.position + transform.forward * move);
 

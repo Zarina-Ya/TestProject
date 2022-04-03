@@ -48,7 +48,13 @@ public class MyEnemy : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);    
+        
+        Rigidbody rb = GetComponent<Rigidbody>();
+     
+        rb.AddForce(-Vector3.forward * 500f);
+        rb.AddTorque(Vector3.right * 500f);
+    
+         Destroy(gameObject, 3f);    
     }
 
 

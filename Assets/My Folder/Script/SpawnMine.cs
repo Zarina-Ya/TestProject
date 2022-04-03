@@ -19,7 +19,7 @@ public class SpawnMine : MonoBehaviour
         if (_isSpawning && _countMine > 0)
         {
             _isSpawning = false;
-            Instantiate(_mine, _mineSpawnPlace.position, _mineSpawnPlace.rotation);
+             Instantiate(_mine, _mineSpawnPlace.position, _mineSpawnPlace.rotation);
             _countMine--;
         }
     }

@@ -34,7 +34,7 @@ public class Grenade : MonoBehaviour
     private void Explode()
     {
      
-        Debug.Log("BUUM");
+        Debug.Log("BUUM Grenade");
 
         Instantiate(_effect, transform.position, transform.rotation);
 
@@ -50,7 +50,14 @@ public class Grenade : MonoBehaviour
             }
 
             var enemy = collider.gameObject.GetComponent<MyEnemy>();
-            if (enemy) enemy.Die();
+            if(enemy != null)
+            {
+                var rb2 = enemy.GetComponent<Rigidbody>();
+                rb2.isKinematic = false;
+                enemy.Hurt(1);
+            }
+           
+            
         }
 
       

@@ -11,6 +11,10 @@ public class Mine : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             var enemy = other.GetComponent<MyEnemy>();
+
+            var rb = other.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+
             enemy.Hurt(_damage);
             Destroy(gameObject);
         }
