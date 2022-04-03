@@ -263,9 +263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turningSpeed: 25
   _direction: {x: 0, y: 0, z: 0}
-  rigidbody: {fileID: 0}
+  rb: {fileID: 0}
   _jumpPower: 5
---- !u!114 &655155172
+--- !u!114 &5736186135033971207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,3 +279,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mine: {fileID: 7147809742697783357, guid: 135c2332ee29631429a9f296ca68c6aa, type: 3}
   _mineSpawnPlace: {fileID: 1661133460}
+  _countMine: 5

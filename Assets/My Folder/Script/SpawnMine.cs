@@ -7,6 +7,7 @@ public class SpawnMine : MonoBehaviour
     [SerializeField] private GameObject _mine;
     [SerializeField] private Transform _mineSpawnPlace;
     private bool _isSpawning;
+    [SerializeField] private int _countMine = 5;
 
     void Update()
     {
@@ -15,10 +16,11 @@ public class SpawnMine : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_isSpawning)
+        if (_isSpawning && _countMine > 0)
         {
             _isSpawning = false;
             Instantiate(_mine, _mineSpawnPlace.position, _mineSpawnPlace.rotation);
+            _countMine--;
         }
     }
 }
