@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17983b6431ef7946ad0e0375972c5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throwForce: 40
+  _throwForce: 10
   _grenadePrefab: {fileID: 7740585173399779007, guid: 425340edab2480c4492865653ede293a,
     type: 3}
   _spawnPosinition: {fileID: 2047349984}
@@ -1173,6 +1173,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430777787}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1431185187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 959186074021287656, guid: 337cba1ec8001d04aac6cf830d919ad8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892564491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1431185188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431185187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4ccf18452bdaf4cbb3eec04eebcb7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Speed: 2
+  _target: {fileID: 655155176}
+  _minDistance: 2
 --- !u!1 &1444422703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,6 +1480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982134385169044432, guid: 337cba1ec8001d04aac6cf830d919ad8,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 337cba1ec8001d04aac6cf830d919ad8, type: 3}
