@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-
+       // while (true) Debug.Log("AAAAAAAAAAAAAAAAAAAAA"); программа уходит в вечный цикл и перестает работать, так как в Update - идет логика , просчитываемая каждый кадр , благодаря while - мы не выйдет из метода , следовательно и следующие кадры не будут просчитываться  
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
