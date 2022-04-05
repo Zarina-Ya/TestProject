@@ -15,7 +15,7 @@ public class Trap : MonoBehaviour
     public void Move()
     {
         if (_isHide) transform.position = new Vector3(transform.position.x,0, transform.position.z);
-        else transform.position = new Vector3(transform.position.x, -1, transform.position.z);
+        else transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
         _isHide = !_isHide;
     }
     

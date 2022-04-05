@@ -13,6 +13,7 @@ public class Grenade : MonoBehaviour
    [SerializeField] bool _hasExploded;
 
     [SerializeField] float _radius = 5f;
+    [SerializeField] private int _damage;
 
     private void Start()
     {
@@ -53,8 +54,8 @@ public class Grenade : MonoBehaviour
             if(enemy != null)
             {
                 var rb2 = enemy.GetComponent<Rigidbody>();
-                rb2.isKinematic = false;
-                enemy.Hurt(1);
+               // rb2.isKinematic = false;
+                enemy.Hurt(_damage);
             }
            
             

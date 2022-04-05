@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _minDistance;
 
 
-    [SerializeField] private float _timer = 0f;
+     private float _timer = 0f;
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();

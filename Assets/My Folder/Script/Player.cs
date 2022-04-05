@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpPower = 50f;
     [SerializeField] private bool _isGrounded;
 
+    [SerializeField] private int _health;
     float rotation, move;
 
     private void Awake()
@@ -66,6 +67,15 @@ public class Player : MonoBehaviour
 
 
     }
+    public void HurtPlayer(int damage)
+    {
+        Debug.Log("Player::: Ouch: " + damage + "\n_health" + _health);
+        _health -= damage;
+        if (_health <= 0)
+        {
+           Destroy(gameObject);
+        }
 
+    }
 
 }
