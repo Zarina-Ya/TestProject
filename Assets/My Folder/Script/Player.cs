@@ -13,12 +13,15 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _isGrounded;
 
     [SerializeField] private int _health;
+
+
+    [SerializeField] private Animator _animator;
     float rotation, move;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-       
+        _animator = GetComponent<Animator>();
     }
 
 
@@ -36,7 +39,15 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         if (_isGrounded)
+        {
             rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+            _animator.SetBool("IsJumping",true);
+        }
+        else
+        {
+            _animator.SetBool("IsJumping", false);
+        }
+           
        
     }
 
@@ -62,6 +73,8 @@ public class Player : MonoBehaviour
         rotation = Input.GetAxis("Horizontal") * 3;
         move = Input.GetAxis("Vertical") * _turningSpeed * Time.deltaTime;
 
+        _animator.SetBool("IsWalking", move > 0);
+
         transform.rotation *= Quaternion.Euler(0f, rotation, 0f);
         rb.MovePosition(transform.position + transform.forward * move);
 
@@ -73,6 +86,7 @@ public class Player : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
+          // rb.isKinematic = true;
            Destroy(gameObject);
         }
 
